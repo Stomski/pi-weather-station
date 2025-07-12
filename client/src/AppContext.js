@@ -28,9 +28,8 @@ export function AppContextProvider({ children }) {
   const [darkMode, setDarkMode] = useState(true);
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [currentWeatherDataErr, setCurrentWeatherDataErr] = useState(null);
-  const [currentWeatherDataErrMsg, setCurrentWeatherDataErrMsg] = useState(
-    null
-  );
+  const [currentWeatherDataErrMsg, setCurrentWeatherDataErrMsg] =
+    useState(null);
   const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
   const [hourlyWeatherDataErr, setHourlyWeatherDataErr] = useState(null);
   const [hourlyWeatherDataErrMsg, setHourlyWeatherDataErrMsg] = useState(null);
@@ -332,7 +331,7 @@ export function AppContextProvider({ children }) {
 
       axios
         .get(
-          `https://data.climacell.co/v4/timelines?location=${latitude}%2C${longitude}&fields=${fields}&timesteps=1h&apikey=${weatherApiKey}&endTime=${endTime}`
+          `/weather-proxy?lat=${latitude}&lon=${longitude}&apikey=${weatherApiKey}`
         )
         .then((res) => {
           if (!res) {
@@ -389,7 +388,7 @@ export function AppContextProvider({ children }) {
       }
       axios
         .get(
-          `https://data.climacell.co/v4/timelines?location=${latitude}%2C${longitude}&fields=${fields}&timesteps=1d&apikey=${weatherApiKey}&endTime=${endTime}`
+          `/weather-proxy?lat=${latitude}&lon=${longitude}&apikey=${weatherApiKey}`
         )
         .then((res) => {
           if (!res) {
@@ -479,7 +478,7 @@ export function AppContextProvider({ children }) {
 
       axios
         .get(
-          `https://data.climacell.co/v4/timelines?location=${latitude}%2C${longitude}&fields=${fields}&timesteps=current&apikey=${weatherApiKey}`
+          `/weather-proxy?lat=${latitude}&lon=${longitude}&apikey=${weatherApiKey}`
         )
         .then((res) => {
           if (!res) {
